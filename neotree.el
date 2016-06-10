@@ -1099,13 +1099,13 @@ Return nil if DIR is not an existing directory."
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾"))
           (and (equal name 'close) (funcall n-insert-symbol "▸"))))
      ((equal neo-theme 'file-icons)
-      (or (and (equal name 'open)  (insert (format "%s %s "
+      (or (and (equal name 'open)  (insert (format "\t%s %s "
                                                    (octicon-icon "chevron-down")
                                                    (octicon-icon "file-directory" 1.2))))
-          (and (equal name 'close) (insert (format "%s %s "
+          (and (equal name 'close) (insert (format "\t%s %s "
                                                    (octicon-icon "chevron-right")
                                                    (octicon-icon "file-directory" 1.2))))
-          (and (equal name 'leaf)  (insert (format "%s " (neo-mode-icon-for-file  file-name))))))
+          (and (equal name 'leaf)  (insert (format "\t%s " (neo-mode-icon-for-file  file-name))))))
      ((equal neo-theme 'nerd)
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾ "))
           (and (equal name 'close) (funcall n-insert-symbol "▸ "))
@@ -1219,8 +1219,7 @@ PATH is value."
    ((eq neo-cwd-line-style 'button)
     (neo-path--insert-header-buttonized node))
    (t
-    (neo-buffer--insert-with-face (neo-path--shorten node (window-body-width))
-                                  'neo-root-dir-face)))
+    (insert (format "%s ../%s/" (octicon-icon "repo" 1.2) (neo-path--file-short-name node)))))
   (neo-buffer--newline-and-begin))
 
 (defun neo-buffer--insert-dir-entry (node depth expanded)
