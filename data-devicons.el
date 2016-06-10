@@ -169,6 +169,7 @@
     ( "meteorfull". "\xe6a6" )
     ( "fsharp". "\xe6a7" )
     ( "rust". "\xe6a8" )
+    ( "react". "\xe6ba" )
     ( "ionic". "\xe6a9" )
     ( "sublime". "\xe6aa" )
     ))
