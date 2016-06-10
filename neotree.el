@@ -49,6 +49,8 @@
 
 (defconst neo-header-height 5)
 
+(require 'neo-mode-icons (expand-file-name "./neo-mode-icons"))
+
 (eval-and-compile
 
   ;; Added in Emacs 24.3
@@ -197,6 +199,7 @@ it suitable for terminal.
   :type '(choice (const classic)
                  (const ascii)
                  (const arrow)
+                 (const file-icons)
                  (const nerd)))
 
 (defcustom neo-mode-line-type 'neotree
@@ -1077,7 +1080,7 @@ Return nil if DIR is not an existing directory."
                  'xpm nil :ascent 'center :mask '(heuristic t)))
     image))
 
-(defun neo-buffer--insert-fold-symbol (name)
+(defun neo-buffer--insert-fold-symbol (name &optional file-name)
   "Write icon by NAME, the icon style affected by neo-theme.
 `open' write opened folder icon.
 `close' write closed folder icon.
@@ -1095,6 +1098,14 @@ Return nil if DIR is not an existing directory."
      ((equal neo-theme 'arrow)
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾"))
           (and (equal name 'close) (funcall n-insert-symbol "▸"))))
+     ((equal neo-theme 'file-icons)
+      (or (and (equal name 'open)  (insert (format "%s %s "
+                                                   (octicon-icon "chevron-down")
+                                                   (octicon-icon "file-directory" 1.2))))
+          (and (equal name 'close) (insert (format "%s %s "
+                                                   (octicon-icon "chevron-right")
+                                                   (octicon-icon "file-directory" 1.2))))
+          (and (equal name 'leaf)  (insert (format "%s " (neo-mode-icon-for-file  file-name))))))
      ((equal neo-theme 'nerd)
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾ "))
           (and (equal name 'close) (funcall n-insert-symbol "▸ "))
@@ -1234,7 +1245,7 @@ PATH is value."
     (when (memq 'char neo-vc-integration)
       (insert-char (car vc))
       (insert-char ?\s))
-    (neo-buffer--insert-fold-symbol 'leaf)
+    (neo-buffer--insert-fold-symbol 'leaf node-short-name)
     (insert-button node-short-name
                    'follow-link t
                    'face (if (memq 'face neo-vc-integration)
