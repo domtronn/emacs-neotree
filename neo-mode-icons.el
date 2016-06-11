@@ -1,10 +1,11 @@
 ;;; neo-mode-icons.el --- XPM Icons for the mode line
 
 (require 'dash)
-(require 'data-devicons "./data-devicons.el")
-(require 'data-octicons "./data-octicons.el")
+(require 'data-faicons   "./data-faicons.el")
+(require 'data-mficons   "./data-mficons.el")
+(require 'data-devicons  "./data-devicons.el")
+(require 'data-octicons  "./data-octicons.el")
 (require 'data-fileicons "./data-fileicons.el")
-(require 'data-mficons "./data-mficons.el")
 
 ;; red
 (defvar neo/red "#AC4142")
