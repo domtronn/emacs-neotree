@@ -1215,7 +1215,7 @@ PATH is value."
    ((eq neo-cwd-line-style 'button)
     (neo-path--insert-header-buttonized node))
    (t
-    (insert (format "%s ../%s/" (neo/octicon "repo" 1.2) (neo-path--file-short-name node)))))
+    (insert (format "%s ../%s/" (neo/devicon "meteor" 1.6 -0.1) (neo-path--file-short-name node)))))
   (neo-buffer--newline-and-begin))
 
 (defun neo-buffer--insert-dir-entry (node depth expanded)
@@ -1224,7 +1224,7 @@ PATH is value."
     (when (memq 'char neo-vc-integration)
       (insert-char ?\s 2))
     (neo-buffer--insert-fold-symbol
-     (if expanded 'open 'close))
+     (if expanded 'open 'close) node)
     (insert-button (concat node-short-name "/")
                    'follow-link t
                    'face neo-dir-link-face
