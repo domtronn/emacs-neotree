@@ -75,6 +75,7 @@
     ("git-pull-request" . "\xf009")
     ("globe" . "\xf0b6")
     ("graph" . "\xf043")
+    ("beaker" . "\xf0dd")
     ("heart" . "\x2665")
     ("history" . "\xf07e")
     ("home" . "\xf08d")
