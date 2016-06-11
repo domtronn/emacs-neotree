@@ -244,20 +244,20 @@
 
 (defvar neo/dir-icon-alist
   '(
-    ("trash" neo/faicon "trash-o" 1.2 -0.1)
-    ("dropbox" neo/faicon "dropbox" 1.2 -0.1)
+    ("trash"            neo/faicon "trash-o" 1.2 -0.1)
+    ("dropbox"          neo/faicon "dropbox" 1.2 -0.1)
     ("google[ _-]drive" neo/devicon "google-drive" 1.3 -0.1)
-    ("atom" neo/devicon "atom" 1.2 -0.1)
-    ("documents" neo/faicon "book" 1.2 -0.1)
-    ("download" neo/octicon "cloud-download" 1.2 -0.1)
-    ("desktop" neo/faicon "desktop" 1.2 -0.1)
-    ("pictures" neo/faicon "picture-o" 1.2 -0.1)
-    ("photos" neo/faicon "retor-camera" 1.2 -0.1)
-    ("music" neo/faicon "headphones" 1.2 -0.1)
-    ("movies" neo/faicon "video-camera" 1.2 -0.1)
-    ("code" neo/octicon "code" 1.2 -0.1)
-    ("workspace" neo/octicon "code" 1.2 -0.1)
-    ("." neo/octicon "file-directory" 1.2)
+    ("atom"             neo/devicon "atom" 1.2 -0.1)
+    ("documents"        neo/faicon "book" 1.2 -0.1)
+    ("download"         neo/octicon "cloud-download" 1.2 -0.1)
+    ("desktop"          neo/faicon "desktop" 1.2 -0.1)
+    ("pictures"         neo/faicon "picture-o" 1.2 -0.1)
+    ("photos"           neo/faicon "retor-camera" 1.2 -0.1)
+    ("music"            neo/faicon "headphones" 1.2 -0.1)
+    ("movies"           neo/faicon "video-camera" 1.2 -0.1)
+    ("code"             neo/octicon "code" 1.2 -0.1)
+    ("workspace"        neo/octicon "code" 1.2 -0.1)
+    ("."                neo/octicon "file-directory" 1.2)
     ))
 
 (defun neo/match-file-to-alist (file alist)
@@ -281,15 +281,15 @@
 
 (defmacro deficon (name alist family)
   `(prog1
-       (defun ,(neo//function-name name) (icon &optional height v-adjust col)
-         (let ((icon (cdr (assoc icon ,alist)))
+       (defun ,(neo//function-name name) (icon-name &optional height v-adjust col)
+         (let ((icon (cdr (assoc icon-name ,alist)))
                (col (or (and neo/color-icons (symbol-value col))
                         (face-attribute 'default :foreground)))
                (height  (* neo/scale-factor (or height 1.0)))
                (v-adjust (* neo/scale-factor (or v-adjust 0.0)))
                (family ,family))
            (propertize icon
-                       'face `(:family ,family :height ,height :foreground ,col)
+                       'face `(:family ,family :height ,height :foreground ,col :icon ,icon-name)
                        'display `(raise ,v-adjust))))))
 
 (deficon mficon mficons-alist     "mfizz")
