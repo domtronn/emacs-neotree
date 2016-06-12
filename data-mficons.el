@@ -1,6 +1,7 @@
 (defvar mficons-alist
   '(
     
+    ( "jasmine"        . "\xe901" )
     ( "grunt"          . "\xe90c" )
     ( "d3"             . "\xe90d" )
     ( "c-line"         . "\xe90e" )
