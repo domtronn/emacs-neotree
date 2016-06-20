@@ -338,7 +338,7 @@ This variable is used in `neo-vc-for-node' when
 (defvar neo-dir-link-face 'neo-dir-link-face)
 
 (defface neo-file-link-face
-  '((((background dark)) (:foreground "White"))
+  '((((background dark)) (:foreground "White" :family "Times New Roman"))
     (t                   (:foreground "Black")))
   "*Face used for open file/dir in neotree buffer."
   :group 'neotree :group 'font-lock-highlighting-faces)
@@ -1101,7 +1101,7 @@ Return nil if DIR is not an existing directory."
      ((equal neo-theme 'file-icons)
       (or (and (equal name 'open)  (insert (neo-icon-for-dir file-name "down")))
           (and (equal name 'close) (insert (neo-icon-for-dir file-name "right")))
-          (and (equal name 'leaf)  (insert (format "\t%s\t" (neo-icon-for-file  file-name))))))
+          (and (equal name 'leaf)  (insert (format "\t\t\t%s\t" (neo-icon-for-file  file-name))))))
      ((equal neo-theme 'nerd)
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾ "))
           (and (equal name 'close) (funcall n-insert-symbol "▸ "))
@@ -1207,15 +1207,20 @@ PATH is value."
                    'face neo-file-link-face
                    'neo-full-path (neo-path--updir node))
     (let ((start (point)))
+
       (insert " (up a dir)")
       (set-text-properties start (point) '(face neo-header-face)))
-    (neo-buffer--newline-and-begin))
+    (neo-buffer--newline-and-begin)
+    )
   (neo-buffer--node-list-set nil node)
   (cond
    ((eq neo-cwd-line-style 'button)
     (neo-path--insert-header-buttonized node))
    (t
-    (insert (format "%s ../%s/" (neo/devicon "meteor" 1.6 -0.1) (neo-path--file-short-name node)))))
+    (insert (propertize " " 'face '(:background "#528BFF" :height 1.5)))
+    (insert (propertize (format " ../%s/" (neo-path--file-short-name node))
+                        'face `(:background ,(face-attribute 'highlight :background))))
+    ))
   (neo-buffer--newline-and-begin))
 
 (defun neo-buffer--insert-dir-entry (node depth expanded)

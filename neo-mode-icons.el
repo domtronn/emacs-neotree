@@ -58,7 +58,7 @@
 (defvar neo/lsilver "#B9B6AA")
 (defvar neo/dsilver "#838484")
 
-(defvar neo/scale-factor 1.0)
+(defvar neo/scale-factor 1.1)
 (defvar neo/default-adjust -0.2)
 (defvar neo/color-icons t)
 (defvar neo/icon-alist
@@ -129,7 +129,7 @@
     ("\\.scpt$"         neo/fileicon "apple" nil nil neo/pink)
     ("\\.aup$"          neo/fileicon "audacity" nil nil neo/yellow)
 
-    ("\\.java$"         neo/devicon "java" 1.2 nil neo/purple)
+    ("\\.java$"         neo/devicon "java" 1.0 nil neo/purple)
     
     ("\\.mp3$"          neo/faicon "volume-up" nil nil neo/dred)
     ("\\.wav$"          neo/faicon "volume-up" nil nil neo/dred)
@@ -145,7 +145,7 @@
     ("\\.php$"          neo/fileicon "php" nil nil neo/lsilver)
     ("\\.pony$"         neo/fileicon "pony" nil nil neo/maroon)
     ("\\.prol?o?g?$"    neo/devicon "prolog" 1.1 nil neo/lmaroon)
-    ("\\.py$"           neo/devicon "python" 1.3 nil neo/dblue)
+    ("\\.py$"           neo/devicon "python" 1.0 nil neo/dblue)
 
     ("\\.gem$"          neo/devicon "ruby-rough" nil nil neo/red)
     ("\\.rb$"           neo/octicon "ruby" nil 0.0 neo/lred)
@@ -155,10 +155,10 @@
 
     ("\\.scala$"        neo/mficon "scala" nil nil neo/red)
 
-    ("\\.swift$"        neo/devicon "swift" 1.2 nil neo/green)
+    ("\\.swift$"        neo/devicon "swift" 1.0 -0.1 neo/green)
     
-    ("-?spec\\.js$"     neo/mficon "jasmine" 1.0 -0.2 neo/lpurple)
-    ("-?test\\.js$"     neo/mficon "jasmine" 1.0 -0.2 neo/lpurple)
+    ("-?spec\\.js$"     neo/mficon "jasmine" 0.9 -0.2 neo/lpurple)
+    ("-?test\\.js$"     neo/mficon "jasmine" 0.9 -0.1 neo/lpurple)
     ("-?spec\\."        neo/faicon "flask" 1.0 0.0 neo/dgreen)
     ("-?test\\."        neo/faicon "flask" 1.0 0.0 neo/dgreen)
 
@@ -173,7 +173,7 @@
 
     ("\\.csx?$"         neo/mficon "csharp-line" nil nil neo/dblue)
 
-    ("\\.clj$"          neo/devicon "clojure" 1.2 nil neo/blue)
+    ("\\.clj$"          neo/devicon "clojure" 1.0 nil neo/blue)
 
     ("\\.coffee$"       neo/mficon "coffeescript" 1.0 nil neo/maroon)
     ("\\.iced$"         neo/mficon "coffeescript" 1.0 nil neo/lmaroon)
@@ -198,7 +198,7 @@
     ("stylelint"        neo/fileicon "stylelint" nil nil neo/lyellow)
     ("\\.csv$"          neo/octicon "graph" nil 0.0 neo/dblue)
 
-    ("\\.hs$"           neo/devicon "haskell" 1.3 nil neo/red)
+    ("\\.hs$"           neo/devicon "haskell" 1.0 nil neo/red)
 
     ;; Web modes
     ("\\.haml$"         neo/fileicon "haml" nil nil neo/lyellow)
@@ -210,7 +210,7 @@
 
     ;; JavaScript
     ("^gulpfile"        neo/devicon "gulp" 1.0 nil neo/lred)
-    ("^gruntfile"       neo/devicon "grunt" 1.2 -0.1 neo/lyellow)
+    ("^gruntfile"       neo/devicon "grunt" 1.0 -0.1 neo/lyellow)
 
     ("\\.d3\\.?js"      neo/mficon "d3" 0.8 nil neo/lgreen)
     
@@ -249,11 +249,11 @@
     ("\\.pp[st]x$"      neo/fileicon "ppt" nil nil neo/red)
     ("\\.knt$"          neo/fileicon "presentation" nil nil neo/cyan)
 
-    ("bookmark"         neo/octicon "bookmark" 0.8 0.0 neo/lpink)
-    ("\\.cache$"        neo/octicon "database" 0.8 0.0 neo/green)
+    ("bookmark"         neo/octicon "bookmark" 1.1 0.0 neo/lpink)
+    ("\\.cache$"        neo/octicon "database" 1.0 0.0 neo/green)
 
     ("^\\."             neo/octicon "gear" nil 0.0)
-    ("."                neo/faicon "file-o" 0.8 nil neo/dsilver)))
+    ("."                neo/faicon "file-o" 0.8 0.0 neo/dsilver)))
 
 (defvar neo/dir-icon-alist
   '(
@@ -261,16 +261,17 @@
     ("dropbox"          neo/faicon "dropbox" 1.2 -0.1)
     ("google[ _-]drive" neo/devicon "google-drive" 1.3 -0.1)
     ("atom"             neo/devicon "atom" 1.2 -0.1)
+    ("\.git"            neo/mficon "git" 1.0 -0.1)
     ("documents"        neo/faicon "book" 1.2 -0.1)
     ("download"         neo/octicon "cloud-download" 1.2 -0.1)
     ("desktop"          neo/faicon "desktop" 1.2 -0.1)
     ("pictures"         neo/faicon "picture-o" 1.2 -0.1)
-    ("photos"           neo/faicon "retor-camera" 1.2 -0.1)
+    ("photos"           neo/faicon "camera-retro" 1.2 -0.1)
     ("music"            neo/faicon "headphones" 1.2 -0.1)
     ("movies"           neo/faicon "video-camera" 1.2 -0.1)
     ("code"             neo/octicon "code" 1.2 -0.1)
     ("workspace"        neo/octicon "code" 1.2 -0.1)
-    ("."                neo/octicon "file-directory" 1.2)
+    ("."                neo/octicon "file-directory" 1.2 0.0)
     ))
 
 (defvar neo/weather-icon-alist
@@ -332,31 +333,38 @@
     (benchmark-init/tree-mode neo/octicon "dashboard" nil 0.0)
     ))
 
+(defun neo/auto-mode-match? (&optional file)
+  (let* ((file (or file (buffer-file-name) (buffer-name)))
+         (auto-mode
+          (cdr (--first (string-match (car it) file) auto-mode-alist))))
+    (eq major-mode auto-mode)))
+
 (defun neo/match-to-alist (file alist)
-  (cdr (or (--first (string-match (car it) file) alist)
-           (neo/faicon "file-o" 0.8))))
+  (cdr (--first (string-match (car it) file) alist)))
 
 ;; Icon functions
 (defun neo-icon-for-dir (file chevron)
   (let* ((matcher (neo/match-to-alist (file-name-base file) neo/dir-icon-alist))
          (file-path (expand-file-name file))
-         (icon (if (file-exists-p (format "%s/.git" file-path))
-                   (neo/octicon "repo" 1.2)
-                 (apply (car matcher) (cdr matcher)))))
-    (format "\t%s %s " (neo/octicon (format "chevron-%s" chevron)) icon)))
+         (icon (cond
+                ((file-symlink-p file-path)
+                 (neo/octicon "file-symlink-directory" 1.2))
+                ((file-exists-p (format "%s/.git" file-path))
+                 (neo/octicon "repo" 1.2))
+                (t (apply (car matcher) (cdr matcher))))))
+    (format "\t%s\t%s " (neo/octicon (format "chevron-%s" chevron) 0.8 0.0) icon)))
 
 (defun neo-icon-for-file (file)
   (let ((icon (neo/match-to-alist file neo/icon-alist)))
     (apply (car icon) (cdr icon))))
-
-;; TODO: Fix chicken and egg issue with guessing based on file vs mode
 
 (defun neo-icon-for-mode (mode)
   (let ((icon (cdr (assoc mode neo/mode-icon-alist))))
     (if icon (apply (car icon) (cdr icon)) mode)))
 
 (defun neo-icon-for-buffer ()
-  (if (buffer-file-name)
+  (if (and (buffer-file-name)
+           (neo/auto-mode-match?))
       (neo-icon-for-file (file-name-nondirectory (buffer-file-name)))
       (neo-icon-for-mode major-mode)))
 
@@ -376,7 +384,7 @@
 
 ;; Weather icons
 (defun neo-icon-for-weather (weather)
-  (let ((icon (cdr (assoc weather neo/weather-icon-alist))))
+  (let ((icon (neo/match-to-alist weather neo/weather-icon-alist)))
     (if icon (apply (car icon) (cdr icon)) weather)))
 
 ;; Definitions
@@ -403,7 +411,7 @@
 
 (deficon mficon mficons-alist      "dev-icons" )
 (deficon octicon octicons-alist    "github-octicons")
-(deficon devicon devicons-alist    "iconmoon")
+(deficon devicon devicons-alist    "icomoon")
 (deficon fileicon file-icon-alist  "file-icons")
 (deficon faicon fa-icon-alist      "FontAwesome")
 (deficon wicon weather-icons-alist "Weather Icons")
