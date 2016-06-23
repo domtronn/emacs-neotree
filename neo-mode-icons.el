@@ -406,7 +406,7 @@
                (v-adjust (* neo/scale-factor (or v-adjust neo/default-adjust)))
                (family ,family))
            (propertize icon
-                       'face `(:family ,family :height ,height :foreground ,col :icon ,icon-name)
+                       'face `(:family ,family :height ,height :foreground ,col)
                        'display `(raise ,v-adjust))))))
 
 (deficon mficon mficons-alist      "dev-icons" )
