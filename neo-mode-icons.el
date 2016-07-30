@@ -314,6 +314,7 @@
     (dired-mode               neo/octicon "file-directory" nil 0.0)
     (lisp-interaction-mode    neo/fileicon "lisp" nil -0.1)
     (js2-mode                 neo/devicon "javascript-badge" nil -0.1)
+    (web-mode                 neo/fileicon "jsx" nil -0.1)
     (term-mode                neo/octicon "terminal" nil 0.0)
     (eshell-mode              neo/octicon "terminal" nil 0.0)
     (magit-status-mode        neo/mficon "git")
@@ -378,7 +379,8 @@
      (if icon (funcall (intern (format "%s-family" (car icon)))) nil)))
 
 (defun neo-icon-family-for-buffer ()
-  (if (buffer-file-name)
+  (if (and (buffer-file-name)
+           (neo/auto-mode-match?))
       (neo-icon-family-for-file (file-name-nondirectory (buffer-file-name)))
       (neo-icon-family-for-mode major-mode)))
 

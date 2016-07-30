@@ -49,8 +49,6 @@
 
 (defconst neo-header-height 5)
 
-(require 'neo-mode-icons (expand-file-name "./neo-mode-icons"))
-
 (eval-and-compile
 
   ;; Added in Emacs 24.3
@@ -1099,9 +1097,9 @@ Return nil if DIR is not an existing directory."
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾"))
           (and (equal name 'close) (funcall n-insert-symbol "▸"))))
      ((equal neo-theme 'file-icons)
-      (or (and (equal name 'open)  (insert (neo-icon-for-dir file-name "down")))
-          (and (equal name 'close) (insert (neo-icon-for-dir file-name "right")))
-          (and (equal name 'leaf)  (insert (format "\t\t\t%s\t" (neo-icon-for-file  file-name))))))
+      (or (and (equal name 'open)  (insert (ati-icon-for-dir file-name "down")))
+          (and (equal name 'close) (insert (ati-icon-for-dir file-name "right")))
+          (and (equal name 'leaf)  (insert (format "\t\t\t%s\t" (ati-icon-for-file  file-name))))))
      ((equal neo-theme 'nerd)
       (or (and (equal name 'open)  (funcall n-insert-symbol "▾ "))
           (and (equal name 'close) (funcall n-insert-symbol "▸ "))
